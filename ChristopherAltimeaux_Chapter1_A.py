@@ -5,29 +5,29 @@
 def main():
     # Initializing constants and variables to hold the total tickets, limit per buyer and number of buyers after each
     # transaction respectively.
-    TOTALTICKETS = 20
-    MAXPERBUYER = 4
-    numOfBuyers = 0
+    TOTAL_TICKETS = 20
+    MAX_PER_BUYER = 4
+    num_of_buyers = 0
 
     #A while loop that will continue to iterate until there are no tickets left.
-    while TOTALTICKETS > 0:
-        numOfTickets = int(input(f"There are {TOTALTICKETS} tickets left. How many tickets would you like to buy? "))
+    while TOTAL_TICKETS > 0:
+        num_of_tickets = int(input(f"There are {TOTAL_TICKETS} tickets left. How many tickets would you like to buy? "))
         # Ensures no more than 4 tickets are bought.
-        if numOfTickets > 4:
+        if num_of_tickets > MAX_PER_BUYER:
             print("4 is the maximum number of tickets per customer. Please enter a number less than 4.")
         # Ensures a valid number is entered.
-        elif numOfTickets <= 0:
+        elif num_of_tickets <= 0:
             print("Invalid number. Please enter a value greater than 0.")
         #Ensures users cannot buy more tickets than are available.
-        elif numOfTickets > TOTALTICKETS:
+        elif num_of_tickets > TOTAL_TICKETS:
             print(
-                f"There are only {TOTALTICKETS} tickets left. Please enter a value less than or equal to {TOTALTICKETS}.")
+                f"There are only {TOTAL_TICKETS} tickets left. Please enter a value less than or equal to {TOTAL_TICKETS}.")
         #Deducts the number of tickets from total and increment buyers each time.
         else:
-            TOTALTICKETS -= numOfTickets
-            numOfBuyers += 1
+            TOTAL_TICKETS -= num_of_tickets
+            num_of_buyers += 1
     #Outputs the number of buyers after all tickets have been sold.
-    print(f"There are {numOfBuyers} buyers.")
+    print(f"There are {num_of_buyers} buyers.")
 
 
 main()
