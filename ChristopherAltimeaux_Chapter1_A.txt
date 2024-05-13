@@ -1,0 +1,25 @@
+Technical Design Document
+By: Christopher Altimeaux
+Date: 05/13/2024
+Summary
+A program that allows users to buy a limited number movie tickets. Each buyer can only purchase 4 movie tickets at a time. After all 20 movie tickets have been sold, the total number of buyers will be displayed.
+
+Variables
+* TOTAL_TICKETS
+* MAX_PER_BUYER
+* num_of_buyers
+* num_of_tickets
+
+Functions
+* main()
+
+Design Process
+1. Create the main() function with no arguments.
+2. Initialize TOTALTICKETS, MAXPERBUYER, num_of_buyers within main() and set them equal to their respective values.
+3. Write a while loop that will continue to run if there are some tickets left to sell.
+4. Within the while loop, create the num_of_tickets variable which will prompt the user to input the number of tickets they are buying and convert it into an integer.
+5. Within the while loop, create an if/elif/else block that ensures that the user cannot purchase more than 4 tickets, enter a value less than 0, or cannot buy more tickets than are available. Output text in each case outlining why their input is invalid.
+6. In the else block, subtract num_of_tickets from TOTALTICKETS and increment num_of_buyers by 1.
+7. Exit the while loop and print num_of_buyers.
+8. Exit the main() block and call the main(function.
+GitHub
