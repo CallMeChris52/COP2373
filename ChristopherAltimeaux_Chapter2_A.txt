@@ -1,0 +1,42 @@
+Technical Design Document
+By: Christopher Altimeaux
+Date: 05/23/2024
+
+Summary
+A program that scans a users' email message and assesses its likelihood of being spam.
+ 
+Variables
+* spam_words
+* spam_score
+* detected_words
+* email_message
+* likelihood
+
+Functions
+* check_spam
+
+Design Process
+1.  Create the check_spam() function with no arguments.
+2. Within check_spam(), initialize the spam_words list that will hold 30 different strings each representing words or phrases commonly found in spam messages.
+3. Initialize spam_score and set it equal to 0. This will track the number of spam keywords.
+4. Initialize detected_words and set it equal to an empty set. This will hold the spam keywords.
+5. Create email_message which will prompt the user to enter an email message to check for spam.
+6. Write a for loop that iterates through each word in spam_words.
+7. Within the for loop, write an if statement that checks if word.casefold() is in email_message.casefold().
+8. Within the if block, write the following code that will increment spam_score and add the keyword to the detected_words set:
+	spam_score += email_message.casefold().count(word.casefold())
+	detected_words.add(word)
+9. Exit the if block and for loop and initialize likelihood and set it equal to an empty string.
+10. Create an if/elif/else block with the following code:
+	if spam_score <= 1:
+		likelihood = “unlikely”
+	elif spam_score == 2:
+		likelihood = “likely”
+	else:
+		likelihood = definetly
+11. Exit the if/elif/else block and use a f-string to print the spam_score, likelihood, and detected words variables in a way that is user-friendly.
+12. Exit the check_spam function and call it.
+
+GitHub: github.com/CallMeChris52/COP2373
+
+  
