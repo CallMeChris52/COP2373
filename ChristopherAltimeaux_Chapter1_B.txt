@@ -1,0 +1,38 @@
+Technical Design Document
+By: Christopher Altimeaux
+Date: 05/13/2024
+
+Summary
+A program that replicates the Magic 8 Ball toy by accepting a yes or no question from a user and responding with a random answer.
+ 
+Variables
+* responses
+* answers
+* keep_playing
+
+Functions
+* create_file
+* ask_question
+
+Design Process
+1. From the random module, import the choice function to select a random element from a sequence.
+2. Define the create_file() function which will create the 8ball_responses.txt file.
+3. Use a context manager to open the 8ball_responses.txt file in write-mode as the file-object responses.
+4. Use the responses file-object write method to add all the possible responses. Ensure to add the newline character at the end of each response.
+5. Exit the create_file() function.
+6. Define the ask_question function that will use the 8ball_responses.txt file to generate a response to a user imposed question.
+7. Initialize the answers variable and set it equal to an empty list.
+8. Use a context manager to open the 8ball_responses.txt file in read-mode as the file-object responses.
+9. Use a for loop on responses.readlines() to append each response to the answers list.
+10.Initialize the keep_playing variable and set it equal to the string "Y".
+11.Write a while loop with the condition of keep_playing == "Y".
+12.Within the while loop, initialize the question variable and set it equal to the following: input("The Magic 8 Ball knows all. What is your question? ")
+13.Print choice(answers) to display a random response to the user.
+14.Reassign the value of keep_playing to the following: input("I have answered your question. Would you like to ask me another one? (Y/N) ")
+15.Create an if statement with the following condition: keep_playing.upper() == "N". If the condition is true, then print an exit message and break the while loop.
+16.Exit the ask_question() function and call create_file().
+17.On the next line, call ask_question.
+
+GitHub: github.com/CallMeChris52/COP2373
+
+  
