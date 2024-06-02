@@ -1,0 +1,60 @@
+Technical Design Document
+By: Christopher Altimeaux
+Date: 06/02/2024
+Summary
+A program that calculates a user’s total expense, highest expense, and lowest expense.
+
+Variables
+* expenses_type
+* expenses_amount
+* user_type
+* user_amount
+* total_expense
+* highest_expense
+* lowest_expense
+
+Functions
+* main()
+* enter_expenses()
+* calculate_expenses()
+
+Design Process
+1. Import the functools module to access the reduce function.
+2. Create the main() function.
+3. Within the main() function, define the enter_expenses() function.
+4. Within the enter_expesnes function, initialize the expenses_type and expenses_amount variables with the global keyword. This will allow these variables to be accessible by other functions.
+5. Create a while loop with its condintion set equal to the Boolean True.
+6. Inside the while loop, create a for loop with the following syntax:
+for i in range(len(expenses_amount)):
+    print(str(expenses_type[i]) + "\t" * 4 + str(expenses_amount[i]))
+This will print all the expenses the user has entered every time one is added.
+7. Initialize the user_type variable and set it equal to:
+input("Please enter the type of expense. If you are finished adding expenses, then press enter key to continue: ")
+
+8. Write an if statement that breaks the while loop if the user_type is equal to an empty string.
+9. Create the user_amount variable and set it equal to an empty string.
+10. Create two nested while loops with the following syntax:
+while type(user_amount) is not float:
+    try:
+        user_amount = float(input("Please enter the amount for this expense: $"))
+
+    except:
+        print("Please enter a valid amount.")
+
+while user_amount < 0:
+    print("Please enter a value greater than 0.")
+    user_amount = float(input("Please enter the amount for this expense: $"))
+
+These nested while loops ensure that the values entered by the user are valid.
+11. Exit the nested while loops and inside the outer while loop, append user_type to the expenses_type list and append the user_amount to the expenses_amount list.
+12. Exit the outer while loop and enter_expenses()function and define the calculate_expenses() function.
+13. Within the calculate_expenses function, create the total_expense, highest_expense, and lowest_expense variables using the following code:
+total_expense = functools.reduce(lambda a, b: a + b, expenses_amount)
+highest_expense = expenses_type[expenses_amount.index(max(expenses_amount))]
+lowest_expense = expenses_type[expenses_amount.index(min(expenses_amount))]
+
+This will calculate the different types of expenses and store them in their respective variables.
+14. Print an f-string that describes the total, highest, and lowest expense using the respective variables.
+15. Exit the calculate_expenses() function and call the enter_expenses and calculate_expenses() functions within the main function.
+16. Exit the main() function and call it on the global scope.
+GitHub: github.com/CallMeChris52/COP2373
