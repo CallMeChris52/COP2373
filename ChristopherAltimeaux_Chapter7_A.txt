@@ -1,0 +1,34 @@
+Technical Design Document
+By: Christopher Altimeaux
+Date: 06/22/2024
+Summary
+A program that allows the user to enter a series of sentences. It will then display each sentence and the number of sentences that were found.
+
+Variables
+* pat
+* user_sentences
+* sentences
+
+Functions
+* main()
+
+Design Process
+1. Import the regular expression module.
+2. Define the main() function with no arguments.
+3. Within the main() function, create a variable called pat with the following code:
+
+pat = r"[A-Z\d].*?[.!?](?= [A-Z\d]|$)"
+
+The variable pat holds a raw string that utilizes non-greedy expressions and the look ahead feature. This ensures that each individual sentence is captured between capital letters or numbers and punctuation marks.
+
+4. Create the variable user_sentences that will prompt and store the user’s sentences using the input function.
+5. Create the variable sentences using the following code:
+
+sentences = re.findall(pat, user_sentences, flags= re.DOTALL | re.MULTILINE)
+
+The re.findall() method returns a list that will store each substring that matches the pattern as its own element. The DOTALL flag ensures that all characters can be matched including /n and the MULTILINE flag allows the $ special character to match the beginning and end of strings and lines.
+
+6. Write a print statement that will display the length of the sentences list.
+7. Create a for loop that iterates through the sentences list and prints each sentence on a new line.
+8. Exit the main() function and call main().
+GitHub: github.com/CallMeChris52/COP2373
