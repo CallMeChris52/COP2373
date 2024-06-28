@@ -1,0 +1,85 @@
+Technical Design Document
+By: Christopher Altimeaux
+Date: 06/19/2024
+Summary
+A program that prompts the user to enter a phone number, social security number and zip code and determines if the number is valid.
+
+Variables
+* phone_number_pattern
+* social_security_pattern
+* zip_code_pattern
+* user_phone_number
+* user_social_security
+* user_zip_code
+Functions
+* validate_phone_number
+* validate_social_security
+* validate_zip_code
+* main()
+
+Design Process
+1. Import the regular expression module.
+2. Create the validate_phone_number() function with one parameter called number.
+3. Inside the validate_phone_number() function, write the following code:
+	phone_number_pattern = r"[(]*\d{3}[)]*[ .-]*\d{3}[ .-]*\d{4}$"
+
+This variable represents a regular expression that represents the most common ways to enter a phone number.
+
+4. Write an if statement with the following code:
+if re.match(phone_number_pattern, number):
+    return True
+else:
+    return False
+
+This code uses the re.match() method to create a match object. The match object is only created when the selected pattern matches a string.
+If the match object is created, the function returns True.
+
+
+
+5. Exit the validate_phone_number function and create the validate_social_security and validate_zip_code functions with the following code:
+
+def validate_social_security(number):
+
+    social_security_pattern = r"\d{3}[ -]*\d{2}[ -]*\d{4}$"
+
+    if re.match(social_security_pattern, number):
+        return True
+    else:
+        return False
+
+
+def validate_zip_code(number):
+
+    zip_code_pattern = r"\d{5}[ -]*(\d{4})*$"
+
+    if re.match(zip_code_pattern, number):
+        return True
+    else:
+        return False
+
+This will create the validate_social_security and validate_zip_code functions that will check social security numbers and zip codes respectively. They both use similar code to the validate_phone_number function that creates a regular expression pattern to represent a number format and checks to see if the number argument creates a match using the re.match() method.
+
+6. Exit both function blocks and define the main() function with no arguments.
+7. Within the main function(), create the user_phone_number, user_social_security, and user_zip_code variables that will use the input function to prompt and store the user’s phone number, social security, and zip code respectively.
+8. Call each function using the following code:
+
+if validate_phone_number(user_phone_number):
+    print("This phone number is valid.")
+else:
+    print("This phone number is invalid.")
+
+if validate_social_security(user_social_security):
+    print("This social security number is valid.")
+else:
+    print("This social security number is invalid.")
+
+if validate_zip_code(user_zip_code):
+    print("This zip code is valid.")
+else:
+    print("This zip code is invalid.")
+
+Since functions are first-class objects, it is possible to call each and use them as conditions for if/else statements. Each user number is called by their respective function and if the user’s input matches a particular format, then a confirming message is displayed to the user. Otherwise, the user is informed that their input is invalid.
+
+9. Exit the main() function and call main().
+
+GitHub: github.com/CallMeChris52/COP2373
