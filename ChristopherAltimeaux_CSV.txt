@@ -1,0 +1,72 @@
+Technical Design Document
+By: Christopher Altimeaux
+Date: 06/26/2024
+Summary
+A program that allows a user to enter students’ names and three exam scores. It will then display the information in a tabular format.
+
+Variables
+* FIELDS
+* num_of_students
+* writer
+* student_info
+* first_name
+* last_name
+* grade_1
+* grade_2
+* grade_3
+* reader
+* grades_csv
+
+Functions
+* collect_scores
+* display_scores 
+
+Design Process
+1. Import the csv module.
+2. Define the collect_scores function with no arguments.
+3. In the collect_scores function, use the with context manager to open the grades.csv file in write-mode. Save it as a file object called grades_csv.
+4. Inside the with block, create the FIELDS list with the following code:
+	FIELDS = ["First Name", "Last Name", "Exam 1", "Exam 2", "Exam 3"]
+
+The elements in this list will later be used as the header row of the csv file.
+
+5.Create the num_of_students variable that will prompt and store the number of students the user would like to enter.
+6. Use the csv module’s writer method to create a writer object of the grades_csv file object and save it in a variable called writer.
+7. Call the writer object’s .writerow() method to write FIELDS as the header row of the csv file.
+8. Write a for loop to add each student’s name and test score using the following code:
+for i in range(num_of_students):
+
+    student_info = []
+
+    first_name = input("Please enter the student's first name: ")
+    last_name = input("Please enter the student's last name: ")
+    grade_1 = int(input("Please enter the student's Exam 1 score: "))
+    grade_2 = int(input("Please enter the student's Exam 2 score: "))
+    grade_3 = int(input("Please enter the student's Exam 3 score: "))
+
+
+    student_info.append(first_name)
+    student_info.append(last_name)
+    student_info.append(grade_1)
+    student_info.append(grade_2)
+    student_info.append(grade_3)
+
+    writer.writerow(student_info)
+
+The for loop will iterate for each student, hence, range(num_of_students). student_info is an empty list that will hold a student’s information. The variables first_name, last_name, grade_1, grade_2, and grade_3 will prompt and store a particular student’s first name, last name, Exam 1 grade, Exam 2 grade, and Exam 3 grade respectively. Afterwards, each of the above mentioned variables will be appended to the student_info list where it will then be added to the grades.csv file using the writer object method .writerow(). After each iteration, student_info will be set equal to an empty list so that the user can enter another student’s information. That information will then be written on a different row using the .writerow() method.
+
+9. Exit the with block and collect_scores function.
+10. Define the display_scores function with 1 argument called csv_file.
+11. Use the with keyword to open the csv_file in read-mode. Save the file-object as scores_csv.
+12. Inside the with block, create a reader object using the csv.reader method from the csv module on scores_csv. Store the reader object in a variable called reader.
+13. Write a for loop that iterates through each row in reader.
+14. Within the for loop, write the following code:
+print("{:15} {:15} {:7} {:7} {:7}".format(row[0], row[1], row[2], row[3], row[4]))
+
+This print statement uses the spec field of the format method to change the width of each string. If the width specified exceeds the length of the string, then padding is added to the string. This nature makes each line look like a table row.
+
+15. Exit the with block and display_scores function.
+16. Call the collect_scores() function.
+17.  17. Call the display_scores function with the string “grades.csv”.
+
+GitHub: github.com/CallMeChris52/COP2373
