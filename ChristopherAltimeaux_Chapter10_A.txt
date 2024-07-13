@@ -1,0 +1,46 @@
+Technical Design Document
+By: Christopher Altimeaux
+Date: 07/04/2024
+
+Summary
+A program that creates a Money class. Objects created from the Money class accurately store values and supports operations between other Money objects.
+
+Variables
+* self.v
+* self.units
+* m1
+* 
+
+Functions
+* __new__()
+* __init__()
+* __str__()
+* test_Money()
+
+Design Process
+1. From the decimal module, import the Decimal class.
+2. Define the Money class that will inherit from the Decimal class.
+3. Within the Money class definition, define a __new__ method with the following code:
+def __new__(cls, v, units="USD"):
+    return super(Money, cls).__new__(cls, v)
+
+This code will use the __new__() method to call the __new__() function of the Decimal superclass. Calling the __new__() function this way will allow the decimal portion of the Money object to be properly handled by the Decimal class. This approach is necessary because the Decimal data type is immutable.
+
+4. Define the __init__() method with the positional arguments: self and v with a default argument units equal to the string “USD”.
+5. Within the __init__ method, set self.units equal to units.
+6. Exit the __init__() method and Money class block and define the test_Money() function with no arguments.
+7. Within the test_Money() function, create Money objects m1 and m2 with the following code:
+m1 = Money("4.89", "USD")
+m2 = Money("5.25", "USD")
+
+This code will create Money objects m1 and m2 with values of “4.89” and “5.25” respectively. Both of their units are set equal to “USD”.
+
+8. Test each of the Money class’s operations by calling the following print statements:
+print(f"{m1} {m1.units} + {m2} {m2.units} is equal to {m1 + m2} {m1.units}")
+print(f"{m2} {m2.units} * 5 is equal to {m2 * 5} {m2.units}")
+print(f"{m2} {m2.units} - {m1} {m2.units} is equal to {m2 - m1} {m2.units}")
+
+Each print statement will attempt to add, multiply, or subtract Money objects and will display the result of each operation respectively. The print statements use f-strings to display each Money and their corresponding units. At the end of the statement the operation is performed and displayed.
+
+9. Exit the test_Money() function and call it.
+GitHub: github.com/CallMeChris52/COP2373
