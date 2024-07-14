@@ -1,0 +1,96 @@
+Technical Design Document
+By: Christopher Altimeaux
+Date: 07/14/2024
+
+Summary
+A program that creates a bank account class. This allows the creation of bank account objects that can perform various functions such as withdrawing and depositing money. It does so by utilizing the Money class.
+
+Variables
+* self.name
+* self.account_number
+* self.balance
+* self.interest_rate
+* b1
+
+Functions
+* __init__()
+* __add__()
+* __sub__()
+* set_interest_rate()
+* withdraw_money()
+* deposit_money()
+* calculate_interest_rate()
+* __str__()
+* test_BankAcct()
+
+Design Process
+1. Import the Money class from the ChristopherAltimeaux_10_A file.
+2. Create the BankAcct class using the class keyword.
+3. Within the BankAcct class, define the __init__ magic method with the following code:
+def __init__(self, name, account_number, balance, interest_rate):
+    self.name = name
+    self.account_number = account_number
+    self.balance = Money(balance)
+    self.interest_rate = interest_rate
+
+This creates the self.name, self.account_number, self.balance, and self.interest_rate instance variables every time an object is initialized. These instance variables are then set equal to arguments passed in when an object is instantiated from the class. self.balance is set equal to a Money object created by the balance argument. This implementation will be useful for future calculations.
+
+4.Define the set_interest_rate() method with the arguments self, and new_rate.
+5. Inside the set_interest_rate() method set self.interest_rate equal to new_rate.
+6. Exit the set_interest_rate() method and define the __sub__() magic method with the following code:
+def __sub__(self, other):
+    amount = Money(other)
+    if amount <= self.balance:
+        self.balance -= amount
+        print(f"You have successfully withdrawn ${amount:.2f}. Your current balance in now ${self.balance:.2f}.")
+    else:
+        print(f"You do not have the sufficient funds to withdraw ${amount:.2f}."
+              f" Your current balance is ${self.balance:.2f}.")
+The __sub__ method takes two arguments: self and other. The self argument refers to the object itself and other refers to the money being withdrawn. This method will allow a user to withdraw money by subtracting a value directly from a BankAcct object. amount_object creates a Money object out of the other argument. This allows the program to accurately subtract the withdrawal amount using the Money class’s subtraction method. An if/else block is then created to ensure that there is enough money in the account to withdraw. If there is, then this method will deduct amount from the balance instance variable and tell the user that money has been withdrawn. Otherwise, the method informs the user that there is not enough money in their account and displays the current balance.
+
+7. Define the __add__() magic method with the following code:
+def __add__(self, other):
+    amount = Money(other)
+    self.balance += amount
+    print(f"You have successfully deposited ${amount:.2f}. Your current balance in now ${self.balance:.2f}.")
+
+This code will allow users to add money to a bank account by adding a value directly to a BankAcct object. The amount variable is used to hold a Money object created from the other argument. This makes the calculation more accurate. The amount is then added to the self.balance instance variable an the new balance is displayed to the user.
+
+8. Define the calculate_interest_amount() method with the following code:
+def calculate_interest_amount(self, days):
+    # Uses a Money object to help calculate the interest amount.
+    interest_object = Money(self.interest_rate / 365)
+    interest_per_day = (self.balance * interest_object)
+    interest_amount = interest_per_day * days
+    print(f"The amount of interest accrued after {days} days is ${interest_amount:.2f}.")
+
+The calculate_interest_amount method takes two arguments: self and days. interest_object divides the interest rate by 365 and stores the answer in  a Money object for future calculations.
+The interest_per_day variable calculates the interest accumulated each day using the formula above. Afterwards, interest_amount calculates the total interest after a certain number of days by multiplying interest_per_day by days. Finally, a print statement provides the interest accrued after the specified number of days has passed.
+
+9. Define __str__() method, use the following code:
+def __str__(self):
+    return ("Name: {}\n"
+            "Account Number: {}"
+            "\nBalance: ${:.2f}"
+            "\nInterest Rate: {:.2f}%").format(
+        self.name, self.account_number, float(self.balance), float(self.interest_rate * 100)
+    )
+
+The .format() method is used display each of the instance variables whenever a BankAcct object is printed. Each instance variable is passed through the open brackets.
+
+10. Exit the __str__() method and the BankAcct class.
+11. Define the test_BankAcct function() with no arguments.
+12. Within the test_BankAcct function, create the b1 BankAcct object with the following syntax:
+	b1 = BankAcct("Christopher Altimeaux", 24588442545, 1000, 0.07)
+
+This creates a BankAcct object and passes values in for the instance variables. These values are important as they will be used to test the class.
+
+13. Print the b1 object.
+14. Subtract “50.00”” from b1.
+15. Subtract “1000” from b1.
+16. Add “100” to b1.
+17. Call the b1 object s .calculate_interest_rate() method and pass in the value 120.
+18 Call the b1 object s .set_interest_rate() method and pass in the value 0.10.
+19. Call the b1 object s .calculate_interest_amount method and pass in the value 120.
+20. Exit the test_BankAcct() block and call the function.
+GitHub: github.com/CallMeChris52/COP2373
