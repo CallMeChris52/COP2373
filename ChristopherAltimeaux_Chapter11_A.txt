@@ -1,0 +1,64 @@
+Technical Design Document
+By: Christopher Altimeaux
+Date: 07/21/2024
+
+Summary
+A program that emulates a game of Poker and deals the player five cards. The player can then choose to change any of their cards for different ones.
+
+Variables
+* self.card_list
+* self.hand
+* new_card
+* d1
+* pattern
+* user_input
+* cards_to_replace
+*
+
+Functions
+* __init__()
+* deal()
+* replace_cards()
+* main()
+
+Design Process
+1. Import the random and regular expression modules.
+2. Create the Deck class.
+3. Within the Deck block, define the __init__() method with the argument self using the following code:
+
+def __init__(self):
+    self.card_list = [num + suit
+                      for suit in "\u2665\u2666\u2663\u2660"
+                      for num in "A23456789TJQK"
+                      ]
+    random.shuffle(self.card_list)
+    self.hand = []
+
+This code will create the self.card_list and self.hand variables each time a Deck object is initialized. self.card uses a list comprehension and Unicode to make a list 52 playing cards with their symbols and values. The .shuffle() method from the random module mixes up the indices of self.card_list so that the cards will be shuffled. And finally, self.hand is set equal to an empty list will be filled later.
+
+4. Exit the __init__() method and define the deal method with the argument self.
+5. Inside the deal() method, write a for loop with a condition of range(5). This will allow the loop to iterate 5 times, once for each card. 
+6. Within the for loop set new_card equal to self.card_list.pop().
+7. Append new_card to the self.hand list.
+8. Exit the for loop and use an f-string to display the player’s hand.
+9. Exit the deal() method and define the replace_cards method with the following syntax:
+
+def replace_cards(self, cards):
+    for card in cards:
+        new_card = self.card_list.pop()
+        self.hand[int(card) - 1] = new_card
+
+    print(f"Here is your new hand: {self.hand}")
+
+This method takes two arguments, self and cards. cards is list of strings that hold integer values. These strings hold the position of the cards the player would like to exchange. A for loop is then used to iterate through each card in the cards list. A card from self.card_list is removed using the pop method and assigned to the new_card variable. Finally the card that the player would like to change is assigned the new_card value using bracket notation. Note that during this reassignment, the card temporary variable must be converted to a integer using the int function or an error will be raised. In addition, 1 is subtracted from the converted value because lists are 0-indexed. Finally, exit the for loop and use an f-string to print display the player’s new hand.
+
+10. Exit the replace_cards method and the Deck class block and define the main function with no arguments.
+11. Within the main function, create a Deck object and assign it to d1.
+12. Call d1’s .deal() method.
+13. Create the pattern variable and assign it to this value: r"[1-5]"
+14. Ask the user if they would like to change any of their cards and store their response in the user_input variable.
+15. Call the regular expression .findall() method and pass in pattern and user_input as its arguments respectively. Save result in the cards_to_replace variable.
+16. Write an if statement with a condition to check if the length of cards_to_replace is greater than 0.
+17. Within the if block, call d1’s replace_cards() method on the cards_to_replace.
+18. Exit the if block and main() function and call main().
+GitHub: github.com/CallMeChris52/COP2373
