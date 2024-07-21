@@ -1,0 +1,29 @@
+Technical Design Document
+By: Christopher Altimeaux
+Date: 07/21/2024
+
+Summary
+A program that calculates the hypotenuse of a right triangle given its nearest angle and length of adjacent side.
+
+Variables
+* nearest_angle
+* adjacent_side
+* hypotenuse
+
+Functions
+* main()
+
+Design Process
+1. From the math module, import the cos and radians functions.
+2. Define the main() function.
+3. Within the main() function, prompt the user to enter the nearest angle degree measurement using the input function. Convert their response to a float using the float function and store it in the nearest_angle variable.
+4. Prompt the user to enter the length of the adjacent side of the right triangle using the input function. Convert their response into a float using the float function and save it in the adjacent_side variable.
+5. Calculate the hypotenuse of the right triangle using the following formula:
+
+hypotenuse = adjacent_side / cos(radians(nearest_angle))
+
+Using algebra and trigonometry, the hypotenuse of the triangle can be calculated using the formula above. The adjacent side is divided by the cosine of the nearest angle. To find the cosine, the cos function from the math module must be called on the angle. It is also important to note that the radians function from the math module must be called on the angle as well. This is because all Python trig functions use radians. Therefore, nearest_angle must be converted from degrees to radians, or the calculation will yield the incorrect answer.
+
+6. Use an f-string to print the hypotenuse to the user.
+7. Exit the main() function and call main.
+GitHub: github.com/CallMeChris52/COP2373
