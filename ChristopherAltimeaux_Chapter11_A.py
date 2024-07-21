@@ -1,5 +1,7 @@
 # A program that simulates a Poker game and allows the user to draw five cards. After the users receives their cards,
 # they are allowed to replace any cards in their hand during the draw phase.
+
+# Import the random and regular expression modules.
 import random
 import re
 
