@@ -12,6 +12,7 @@ class Money(Decimal):
 
     # A __init__ magic method that creates the units instance variable.
     def __init__(self, v, units="USD"):
+        self.v = v
         self.units = units
 
 
@@ -32,4 +33,4 @@ def test_Money():
 
 
 # Calls the test_Money function.
-test_Money()
+# test_Money()
