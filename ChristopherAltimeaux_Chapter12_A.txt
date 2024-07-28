@@ -1,0 +1,63 @@
+Technical Design Document
+By: Christopher Altimeaux
+Date: 07/28/2024
+
+Summary
+A program that analyzes grades stored in a csv file and performs various statistical calculations on them.
+
+Variables
+* csv_file
+* reader
+* csv_list
+* array
+* exam1_scores
+* exam2_scores
+* exam3_scores
+* num_of_exam1_passes
+* num_of_exam2_passes
+* num_of_exam3_passes
+
+Functions
+* main()
+
+Design Process
+1. Import the numpy module as np.
+2. Import the csv module.
+3. Define the main() function.
+4. Within the main() function, open the grades.csv in read-mode using the with keyword and save it as csv_file.
+5. Within the with block, call the csv module .reader() method on csv_file to create a reader object named reader.
+6. Create an empty list called csv_list.
+7. Write a for loop to iterate through each row in reader.
+8. Within the for loop, append each row to csv_list.
+9. Exit the for loop and create a numpy array called array using the np.array() method on csv_list.
+10. Reassign array to np.delete(array, 0, 0). This will delete the header row of the array.
+11. Reassign array to np.delete(array, (0, 1) 1). This will delete the First Name and Last Name fields, leaving the numerical data left in the array.
+12. Reassign array to np.astype(int). This will convert all the data in array from strings into integers.
+13. Print array[0:3] to display the first three rows of array.
+14. Exit the with block and create the arrays exam1_scores, exam2_scores, and exam3_scores with the following code:
+
+exam1_scores = array[:, 0:1]
+exam2_scores = array[:, 1:2]
+exam3_scores = array[:, 2:3]
+
+The values stored in each variable use multidimensional slicing on array to create lists that contain the scores for a particular exam. These results are then stored in their respective variables.
+
+15. Call the np.mean() method on each exam scores array to calculate the average score of each exam. Use an f-string to display the results.
+16. Repeat step 15 on each of the exam score arrays to calculate other statistics. Instead of np.mean(), call np.median(), np.std(), np.min(), and np.max(), to calculate the median, standard deviation, lowest score, and highest score respectively. Use an f-string to print the results of the methods for each exam.
+17. Call np.mean(), np.median(), np.std(), np.min(), and np.max() on array to calculate the mean, median, standard deviation, lowest, and highest scores on all exam scores respectively. Use an f-string to print the results.
+18. Create the num_of_exam1_passes, num_of_exam2_passes, and num_of_exam3_passes variables with the following code:
+
+num_of_exam1_passes = len(exam1_scores[exam1_scores >= 60])
+num_of_exam2_passes = len(exam2_scores[exam2_scores >= 60])
+num_of_exam3_passes = len(exam3_scores[exam3_scores >= 60])
+
+Each variable uses a Boolean mask to filter failing scores, or scores less than 60%. This mask is then applied to exam1_scores, exam2_scores, and exam3_scores to create arrays that will hold the data that meets the Boolean array condition. Finally, the len() function is called on each array to return the number of students that passed a particular exam. These results are stored in num_of_exam1_passes, num_of_exam2_passes, and num_of_exam3_passes respectively.
+
+19. Use f-stings to print num_of_exam1_passes, num_of_exam2_passes, and num_of_exam3_passes. This will display how many students passed each exam.
+20. Use the following formula to calculate the overall pass percentage of all exams:
+
+pass_rate = (num_of_exam1_passes + num_of_exam2_passes + num_of_exam3_passes) / array.size * 100
+
+21. Display pass_rate using an f-string.
+22. Exit the main() function and call it.
+GitHub: github.com/CallMeChris52/COP2373
